@@ -7,7 +7,6 @@ edition = "2018"
 
 [dependencies]
 mylib = {path = "./mylib"}
-mylib-sys = { path = "./mylib-sys" }
 
 [workspace]
-members = ["mylib", "mylib-sys"]
+members = ["mylib"]

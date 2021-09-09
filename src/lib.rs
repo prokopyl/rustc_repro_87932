@@ -1,5 +1,5 @@
 // SysFoo comes from the crate mylib_sys, and is re-exported.
-use mylib::{FooTrait, SysFoo};
+use mylib::{FooTrait, LibFoo, SysFoo};
 
 struct Foo;
 
@@ -21,10 +21,12 @@ impl Clone for Foo {
     }
 }
 
+pub const SYS_FOO: SysFoo = SysFoo;
+
 // Either remove the pub, or change the return type, and it works again.
 // Note: either having this as pub, or having a #[no_mangle] attribute triggers the stack overflow
 // Note: changing `SysFoo` (reexported) to mylib_sys::SysFoo prevents the stack overflow
-pub fn exposed_sys_foo() -> SysFoo {
+pub fn exposed_sys_foo() -> LibFoo {
     // NOTE: removing/changing this value to another type here causes the correct type error and does not trigger the stack overflow (yet?)
-    SysFoo
+    LibFoo
 }
